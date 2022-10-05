@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] RawImage[] hearts;
     private int healthCount;
+    public bool inmunity;
+    public float inmunityTime;
     void Start()
     {
         healthCount = 3;
@@ -31,10 +33,18 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && !inmunity)
         {
             healthCount--;
+            StartCoroutine(Inmunity());
         }
     }
-
+    IEnumerator Inmunity()
+    {
+        inmunity = true;
+        GetComponent<SpriteRenderer>().material = GetComponent<EffectBlink>().blink;
+        yield return new WaitForSeconds(inmunityTime);
+        GetComponent<SpriteRenderer>().material = GetComponent<EffectBlink>().original;
+        inmunity = false;
+    }
 }
