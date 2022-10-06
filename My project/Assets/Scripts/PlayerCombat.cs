@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    
+    public Animator animator;
     // Update is called once per frame
     void Update()
     {
@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
         //Correr la aniamcion del ataque
-
+        animator.SetTrigger("Attack");
         //Detectar los enemigos en rango del ataque
         //Hacerle daño a los enemigos
     }

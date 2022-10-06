@@ -4783,13 +4783,12 @@ GameObject:
   - component: {fileID: 785011812}
   - component: {fileID: 785011811}
   - component: {fileID: 785011810}
-  - component: {fileID: 785011813}
   - component: {fileID: 785011814}
   - component: {fileID: 785011815}
   - component: {fileID: 785011816}
   - component: {fileID: 785011817}
   - component: {fileID: 785011818}
-  - component: {fileID: 785011819}
+  - component: {fileID: 785011813}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4892,12 +4891,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 785011809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 064733a1cef1ae14aa6e211cf3b74990, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c43d4813ba27a9458abb3ab86b7f99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 5
   rb: {fileID: 785011814}
-  anim: {fileID: 785011810}
+  animator: {fileID: 785011810}
 --- !u!50 &785011814
 Rigidbody2D:
   serializedVersion: 4
@@ -4980,18 +4979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   original: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   blink: {fileID: 2100000, guid: 4c64c01b75f049d42b955aadfecd77b5, type: 2}
---- !u!114 &785011819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785011809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64facb7e89491a842b7cc96c8c4acc6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &786399171
 GameObject:
   m_ObjectHideFlags: 0
