@@ -7,6 +7,12 @@ public class MovimientoJugador : MonoBehaviour
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Animator animator;
+
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+    public int attackDamage = 40;
+
     Vector2 movement;
 
     // Update is called once per frame
@@ -31,17 +37,38 @@ public class MovimientoJugador : MonoBehaviour
 
         }
         if (Input.GetKeyDown(KeyCode.Space))
-            animator.SetBool("isAttack", true);        
+            animator.SetBool("isAttack", true);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
     }
     private void FixedUpdate()
     {
-        if(animator.GetBool("isAttack")==true)
+        if (animator.GetBool("isAttack") == true)
         {
             rb.velocity = Vector2.zero;
-        }else
+        } else
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
+       
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     void StopAttack()
