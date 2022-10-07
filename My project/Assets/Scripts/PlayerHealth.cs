@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] RawImage[] hearts;
+    public GameObject diePanel;
     private int healthCount;
     public bool inmunity;
     public float inmunityTime;
@@ -29,7 +32,11 @@ public class PlayerHealth : MonoBehaviour
                 hearts[2].GetComponent<RawImage>().enabled = false;
                 break;
         }
-        
+        if (healthCount <= 0)
+        {
+            diePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,4 +54,9 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<SpriteRenderer>().material = GetComponent<EffectBlink>().original;
         inmunity = false;
     }
+    public void MenuPrincipal()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
 }
